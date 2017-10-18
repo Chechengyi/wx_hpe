@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<!--引入wxParse.wxml  -->
+<import src="../../wxParse/wxParse.wxml" />
+<import src="/pages/template/indexTemplate.wxml" />
+<view class="index-wrapper" >
+  <view class='bg-wrapper'></view>
+  <view class='index-content'>
+    <view class='index-logo-wrapper'>
+      <image src='/images/index/logo.png' class='index-logo'></image>
+    </view>
+    <scroll-view class='book-list' scroll-y>
+      <view class='book-content'>
+        <view class='book-row'>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img3.doubanio.com/view/ark_article_cover/retina/public/2405461.jpg?v=1395393781.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+      </view>
+      </view>
+      <view class='book-content'>
+        <view class='book-row'>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img3.doubanio.com/view/ark_article_cover/retina/public/2405461.jpg?v=1395393781.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+      </view>
+      </view>
+      <view class='book-content'>
+        <view class='book-row'>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img3.doubanio.com/view/ark_article_cover/retina/public/2405461.jpg?v=1395393781.0'></image>
+        </view>
+        <view class='book-col' bindtap='tap'>
+          <image src='https://img1.doubanio.com/view/ark_article_cover/retina/public/2020488.jpg?v=1395394096.0'></image>
+        </view>
+      </view>
+      </view>
+      <view class='book-content'>
+        <view class='book-row'>
+        
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 书详情页 -->
+    <view id='book-detail' animation="{{animationData}}">
+      <scroll-view class='book-content'  scroll-y >
+        <view wx:if="article !== ''">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+        </view>
+      </scroll-view>
+      <view class='close-detail' bindtap='close'>
+        <icon type='clear' size='40' color='rgba(221,88,98,0.6)'></icon>
+      </view>
+    </view>
+  </view>
+</view>
+
