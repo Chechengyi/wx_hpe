@@ -1,11 +1,13 @@
 {
-    "pages": [
-      "pages/index/index",
-      "pages/template/indexTemplate"
-    ],
-    "window": {
-      "navigationBarBackgroundColor": "#ffffff",
-      "navigationBarTitleText": "慧与大学数字月刊",
-      "navigationBarTextStyle": "black"
-    }
+  "pages": [
+    "pages/index/index",
+    "pages/booklist/booklist",
+    "pages/common/bookcell/bookcell",
+    "pages/bookdetail/bookdetail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "慧与大学数字月刊",
+    "navigationBarTextStyle": "black"
+  }
 }

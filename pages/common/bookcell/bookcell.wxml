@@ -1,0 +1,7 @@
+<template name="bookCell">
+  <view class='book-cell-wrapper' bindtap='taphandle' >
+    <image  class='cell-img' src='{{book_cover}}'></image>
+    <text class='en-title title'>{{en_title}}</text>
+    <text class='zh-title title'>{{zh_title}}</text>
+  </view>
+</template>

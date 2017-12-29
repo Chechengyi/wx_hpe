@@ -1,0 +1,13 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view>
+  <image mode="aspectFill" src="../../images/index/banner.jpg" style="width: 100%" ></image>
+</view>
+<view>
+
+  <view class="doc-tit">
+    <template is="wxParse" data="{{wxParseData: title.nodes}}"></template>
+  </view>
+  <view class="doc-cont" >
+    <template is="wxParse" data="{{wxParseData: cont.nodes}}"></template>
+  </view>
+</view>

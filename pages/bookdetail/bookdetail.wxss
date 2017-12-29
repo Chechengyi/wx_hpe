@@ -1,0 +1,49 @@
+.book-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book-detail-wrapper{
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+}
+.book-detail-banner{
+  width: 750rpx;
+  height: 938rpx;
+  flex-direction: column;
+  background-image: url('http://bpic.588ku.com/back_pic/03/99/45/0057f8fd82d2cac.jpg!/fw/260/quality/90/unsharp/true/compress/true');
+}
+.book-detail-banner .title{
+  display: flex;
+  padding: 16rpx 0 0 30rpx;
+}
+.book-detail-banner .en-title{
+  color: #aaa;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.book-detail-banner .zh-title{
+  color: #000;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+.book-content{
+  width: 710rpx;
+  color: #000;
+   font-size: 30rpx; 
+  text-align: justify;
+  overflow: hidden;
+}
+.book-content .wxParse-img{
+  width: 710rpx;
+}
+.doc-tit {
+  text-align: center;
+  margin-top: 30rpx;
+  font-size: 40rpx;
+}
+.doc-cont {
+  padding: 10rpx 40rpx;
+   font-size: 35rpx; 
+}

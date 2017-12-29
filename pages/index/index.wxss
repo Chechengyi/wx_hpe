@@ -3,110 +3,102 @@
 /* index.wxss */
 .index-wrapper{
   width: 750rpx;
-  height: 100%;
-  position: fixed; 
-  overflow: hidden;
-}
-.index-wrapper .bg-wrapper{
-  position: absolute;
-  z-index: -1;
-  width: 110%;
-  height: 110%;
-  margin: -5%;
-  left: 0;
-  top: 0;
-  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506077492277&di=65980f688ee487a405e88851d779d9e0&imgtype=0&src=http%3A%2F%2Ff1.topitme.com%2F1%2Fed%2F14%2F1129731340b7414ed1o.jpg');
-  background-size: 750rpx;
-  filter: blur(20px);
-  zoom: 1;
-}
-.index-wrapper .bg-wrapper .bg-img{
-  width: 100%;
-  height: 100%;
-}
-.index-content{
-  width: 750rpx;
-  height: 100%;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
-}
-.index-content .index-logo-wrapper{
+  overflow: visible;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.index-wrapper .index-content{
+  width: 680rpx;
+  height: 100%;
+  overflow: visible;
+}
+.category-wrapper{
+  display: flex;
+  padding-top: 25rpx;
   flex-direction: row;
+  justify-content: space-between;
+}
+.category-wrapper .category-cell{
+  width: 327rpx;
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
-  height: 220rpx;
-  padding: 10rpx 0;
-  background-color: rgba(255,255,255,0.8)
+  align-items: center;
+  background-color: #d2d2d2;
+  background-size: cover;
+  border-radius: 10rpx;
 }
-.index-content .index-logo{
-  display: flex;
-  width: 700rpx;
-  height: 80rpx;
+.category-cell.cell-l{
+  background-image: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=432530694,1142617927&fm=27&gp=0.jpg');
 }
-.index-content .book-list{
+.category-cell.cell-r{
+  background-image: url('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3811821413,393669060&fm=27&gp=0.jpg');
+}
+.category-cell .category-title{
+  width: 400rpx;
+  text-align: center;
+  color: #fff;
+}
+.category-cell .category-zh-title{
+  font-size: 36rpx;
+  font-weight: 700;
+  letter-spacing: 20rpx;
+}
+.category-cell .category-en-title{
+  font-size: 20rpx;
+  letter-spacing: 6rpx;
+  margin-top: 20rpx;
+}
+.index-separation{
   position: relative;
-  width: 750rpx;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: rgba(255,255,255,0.5);
-  overflow: hidden;
+  width: 100%;
+  height: 56rpx;
+  text-align: center;
+  margin: 10rpx 0;
 }
-.book-list .book-content{
-  width: 750rpx;
-  height: 260rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(255,255,255,0.1));
+.index-separation:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2rpx;
+  left: 0;
+  top: 30rpx;
+  z-index: -1;
+  background-color: #e2e2e2;
 }
-.book-list .book-content .book-row{
-  width: 620rpx;
-  height: 260rpx;
+.index-separation .list-title{
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  color: #aaa;
+  letter-spacing: 4rpx;
+  background-color: #fff;
+}
+.index-content .book-list-wrapper{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  overflow: visible;
 }
-.book-list .book-row .book-col{
-  display: flex;
-  width: 160rpx;
-  height: 220rpx;
-  border-top-left-radius: 4rpx;
-  border-top-right-radius: 4rpx;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.28);
+.index-content .book-list-wrapper .book-item{
+  width: 200rpx;
+  height: 360rpx;
+  margin: 20rpx 0;
+  overflow: visible;
 }
-.book-list .book-row .book-col image{
-  width: 160rpx;
-  height: 220rpx
+.book-list-wrapper {
+  margin: 0 30rpx
 }
-#book-detail{
-  width: 160rpx;
-  height: 220rpx;
-  background: #fff;
-  position: absolute;
-  opacity: 0;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.book-item .book-cover{
+  width: 200rpx;
+  height: 280rpx;
+  box-shadow: 0 0 4px 1px rgba(0,0,0,0.02);
 }
-#book-detail .book-content{
-  font-size: 14px;
-  height: 100%;
-  text-align: justify
-}
-.close-detail{
-  position: fixed;
-  left: 335rpx;
-  bottom: 10rpx;
+.book-item .book-name{
+  font-size: 24rpx;
+  color: #000;
+  padding-left: 20rpx;
+  border-left: 4rpx solid #d2d2d2;
 }

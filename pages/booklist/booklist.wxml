@@ -1,0 +1,36 @@
+<!-- <import src='../common/bookcell/bookcell.wxml'/> -->
+<scroll-view>
+<import src="../../wxParse/wxParse.wxml" />
+<view class="banner" >
+    <!-- <image class='img' mode="aspectFit" src="../../images/index/banner-2.jpg" ></image> -->
+    <image class='img' src="http://img1.imgtn.bdimg.com/it/u=1699897861,1689615685&fm=214&gp=0.jpg" ></image>
+    <text class="text" >让进取的人更具职业价值</text>
+  </view>
+  <view class="title"> {{magazines[0].m_name}}</view>
+  <view class="tab-warp" style="width: {{screenWidth}}px" >
+    <view class="tab-tit-box" >
+      <view class="tab-tit {{cur==='a'? 'active': '' }} " id="a" bindtap='handleTab' >详情</view>
+    </view>
+    <view class="tab-tit-box" >
+      <view class="tab-tit {{cur==='b'? 'active': '' }} " id="b" bindtap='handleTab' >目录</view>
+    </view>
+    <view class="content-box" >
+      <view wx:if="{{cur==='a'}}" style="padding: 0 20rpx; font-size: 30rpx " >
+        <template is="wxParse" data="{{wxParseData: article.nodes}}"></template>
+      </view>
+      <view wx:if="{{cur==='b'}}" >
+         <view class='book-list-wrapper'>
+          <view 
+          class="maga-title" 
+          wx:for="{{books}}" 
+          wx:key="{{item.t_id}}"
+          id="{{item.t_id}}"
+          bindtap='handletitle'
+           > 
+            {{item.title}}
+           </view>
+         </view>
+      </view>
+    </view>
+  </view>
+  </scroll-view>

@@ -1,0 +1,112 @@
+/* 引入富文本样式文件  */
+@import "../../wxParse/wxParse.wxss";
+/* index.wxss */
+.index-wrapper{
+  width: 750rpx;
+  height: 100%;
+  position: fixed; 
+  overflow: hidden;
+}
+.index-wrapper .bg-wrapper{
+  position: absolute;
+  z-index: -1;
+  width: 110%;
+  height: 110%;
+  margin: -5%;
+  left: 0;
+  top: 0;
+  background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506077492277&di=65980f688ee487a405e88851d779d9e0&imgtype=0&src=http%3A%2F%2Ff1.topitme.com%2F1%2Fed%2F14%2F1129731340b7414ed1o.jpg');
+  background-size: 750rpx;
+  filter: blur(20px);
+  zoom: 1;
+}
+.index-wrapper .bg-wrapper .bg-img{
+  width: 100%;
+  height: 100%;
+}
+.index-content{
+  width: 750rpx;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+.index-content .index-logo-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 220rpx;
+  padding: 10rpx 0;
+  background-color: rgba(255,255,255,0.8)
+}
+.index-content .index-logo{
+  display: flex;
+  width: 700rpx;
+  height: 80rpx;
+}
+.index-content .book-list{
+  position: relative;
+  width: 750rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(255,255,255,0.5);
+  overflow: hidden;
+}
+.book-list .book-content{
+  width: 750rpx;
+  height: 260rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(255,255,255,0.1));
+}
+.book-list .book-content .book-row{
+  width: 620rpx;
+  height: 260rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.book-list .book-row .book-col{
+  display: flex;
+  width: 160rpx;
+  height: 220rpx;
+  border-top-left-radius: 4rpx;
+  border-top-right-radius: 4rpx;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.02);
+}
+.book-list .book-row .book-col image{
+  width: 160rpx;
+  height: 220rpx
+}
+#book-detail{
+  width: 160rpx;
+  height: 220rpx;
+  background: #fff;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#book-detail .book-content{
+  font-size: 14px;
+  height: 100%;
+  text-align: justify
+}
+.close-detail{
+  position: fixed;
+  right: 20rpx;
+  top: 20rpx;
+}

@@ -1,0 +1,32 @@
+.book-cell-wrapper{
+  position: relative;
+  width: 680rpx;
+  height: 840rpx;
+  margin: 10rpx 10rpx;
+  flex-direction: column;
+  border-radius: 20rpx;
+  box-shadow: 0 2px 2px 1px rgba(0,0,0,0.1);
+}
+.book-cell-wrapper .title{
+  display: flex;
+  padding: 16rpx 0 0 30rpx;
+}
+.book-cell-wrapper .en-title{
+  color: #aaa;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.book-cell-wrapper .zh-title{
+  color: #000;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+.book-cell-wrapper .cell-img{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20rpx;
+}

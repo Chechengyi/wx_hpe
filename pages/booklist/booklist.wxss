@@ -1,0 +1,78 @@
+@import '../common/bookcell/bookcell.wxss';
+.book-list-wrapper{
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  padding: 0 20rpx
+}
+.book-list-wrapper .book-category .book-category-name{
+  font-size: 56rpx;
+  font-weight: bold;
+}
+body {
+  background-color: #ccc;
+}
+.book-list-wrapper .book-item{
+  margin-bottom: 40rpx;
+}
+.banner {
+  position: relative;
+  width: 100%;
+  /* background-color: red; */
+}
+.banner .img {
+  width: 100%
+}
+.banner .text {
+  position: absolute;
+  top: 50%;
+  margin-top: -20rpx;
+  left: 20rpx;
+  color: #fff;
+  font-size: 30rpx
+}
+.title {
+  /* background-color: #e6e6e6; */
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 20px;
+  font-size: 30rpx
+}
+.tab-warp {
+  width: 100%
+}
+.tab-tit-box {
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #666;
+  border-bottom: 1rpx solid #e6e6e6;
+  padding: 0 40rpx
+}
+.tab-tit-box .tab-tit {
+  height: 80rpx;
+  box-sizing: border-box
+} 
+.active {
+  color: #00b388;
+  border-bottom: 8rpx solid #00b388
+}
+.content-box {
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+.maga-title {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  font-size: 35rpx
+}
+view {
+  overflow: hidden
+}
