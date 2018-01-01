@@ -1,6 +1,7 @@
 // pages/bookdetail/bookdetail.js
 var WxParse = require('../../wxParse/wxParse.js');
-var rootPath = require('../../utils.js')
+var root = require('../../utils.js')
+var SCROLL_TOP
 Page({
 
   /**
@@ -9,7 +10,10 @@ Page({
   data: {
     article: '',
     title: '',
-    cont: ''
+    cont: '',
+    windowHeight: 0,
+    scrollTop: 0,
+    animation: false
   },
 
   /**
@@ -22,8 +26,22 @@ Page({
     this.setData( {
       title: getApp().titleName
     } )
+    wx.getSystemInfo({
+      success: function (res) {
+        // console.log(res.windowHeight)
+        if (res.windowHeight > 603) {
+          SCROLL_TOP = 83
+        } else {
+          SCROLL_TOP = 75
+        }
+        _this.setData({
+          windowHeight: res.windowHeight
+          // scrollTop: SCROLL_TOP
+        })
+      },
+    })
     wx.request({
-      url: rootPath + '/doclist/getdoc',
+      url: root.getDoc,
       method: 'GET',
       data: {
         num: options.num
@@ -31,7 +49,9 @@ Page({
       success: function (res) {
         console.log(res.data)
         _this.setData( {
-          cont: res.data
+          cont: res.data,
+          scrollTop: SCROLL_TOP,
+          animation: true
         } )
         /**
         * WxParse.wxParse(bindName , type, data, target,imagePadding)
@@ -46,7 +66,17 @@ Page({
       }
     })
   },
-
+  bindScroll: function (e) {
+    var _this = this
+    if (e.detail.scrollTop < SCROLL_TOP && e.detail.scrollTop > 10) {
+      if (this.scrolltime) clearTimeout(this.scrolltime)
+      this.scrolltime = setTimeout(function () {
+        _this.setData({
+          scrollTop: SCROLL_TOP
+        })
+      }, 150)
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

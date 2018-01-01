@@ -8,6 +8,7 @@
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "慧与大学数字月刊",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   }
 }

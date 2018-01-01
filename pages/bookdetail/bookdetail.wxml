@@ -1,4 +1,18 @@
 <import src="../../wxParse/wxParse.wxml" />
+<scroll-view
+  style="height:{{windowHeight}}px"
+  scroll-y='true'
+  scroll-top='{{scrollTop}}'
+  scroll-with-animation='{{animation}}'
+  upper-threshold="5"
+  bindscroll="bindScroll"
+>
+<view  class="load" >
+  <image 
+  style="width: 150rpx; height: 150rpx"
+ src="../../images/index/loading.jpg" ></image> 
+ </view>
+<view style="min-height:{{windowHeight + 10 }}px" >
 <view>
   <image mode="aspectFill" src="../../images/index/banner.jpg" style="width: 100%" ></image>
 </view>
@@ -11,3 +25,5 @@
     <template is="wxParse" data="{{wxParseData: cont.nodes}}"></template>
   </view>
 </view>
+</view>
+</scroll-view>
