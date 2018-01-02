@@ -1,7 +1,7 @@
 // pages/bookdetail/bookdetail.js
 var WxParse = require('../../wxParse/wxParse.js');
 var root = require('../../utils.js')
-var SCROLL_TOP
+var ID
 Page({
 
   /**
@@ -11,35 +11,23 @@ Page({
     article: '',
     title: '',
     cont: '',
-    windowHeight: 0,
-    scrollTop: 0,
-    animation: false
+    windowHeight: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  // 获取屏幕高度并设置
+    ID = options.num
+
     console.log(getApp().titleName)
     var _this = this
     // 设置文章标题
     this.setData( {
       title: getApp().titleName
     } )
-    wx.getSystemInfo({
-      success: function (res) {
-        // console.log(res.windowHeight)
-        if (res.windowHeight > 603) {
-          SCROLL_TOP = 83
-        } else {
-          SCROLL_TOP = 75
-        }
-        _this.setData({
-          windowHeight: res.windowHeight
-          // scrollTop: SCROLL_TOP
-        })
-      },
-    })
     wx.request({
       url: root.getDoc,
       method: 'GET',
@@ -49,9 +37,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         _this.setData( {
-          cont: res.data,
-          scrollTop: SCROLL_TOP,
-          animation: true
+          cont: res.data
         } )
         /**
         * WxParse.wxParse(bindName , type, data, target,imagePadding)
@@ -66,17 +52,7 @@ Page({
       }
     })
   },
-  bindScroll: function (e) {
-    var _this = this
-    if (e.detail.scrollTop < SCROLL_TOP && e.detail.scrollTop > 10) {
-      if (this.scrolltime) clearTimeout(this.scrolltime)
-      this.scrolltime = setTimeout(function () {
-        _this.setData({
-          scrollTop: SCROLL_TOP
-        })
-      }, 150)
-    }
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -111,7 +87,28 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var _this = this
+    // setTimeout( function () {
+    //   wx.stopPullDownRefresh() 
+    // }, 300 )
+    console.log(1)
+    wx.request({
+      url: root.getDoc,
+      method: 'GET',
+      data: {
+        num: ID
+      },
+      success: function (res) {
+        console.log(res.data)
+        wx.stopPullDownRefresh() 
+        _this.setData({
+          cont: res.data
+        })
+        
+        WxParse.wxParse('title', 'html', _this.data.cont[0].title, _this, 0);
+        WxParse.wxParse('cont', 'html', _this.data.cont[0].cont, _this, 0);
+      }
+    })
   },
 
   /**

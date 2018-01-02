@@ -1,34 +1,28 @@
 <!--index.wxml-->
-<scroll-view style="height:{{windowHeight}}px"
-  scroll-y="true"
-  scroll-top="{{scrollTop}}"
-  bindscroll="bindScroll"
-  bindscrolltoupper='down'
-  scroll-with-animation="true"
-  upper-threshold="5"
-  bindscrolltolower="up"
-  lower-threshold='5'
+
+ <scroll-view
+  style="height:{{windowHeight}}px; width: 100%"
+  scroll-y
+  upper-threshold="-20"
+  bindscrolltoupper="down"
+  bindscrolltolower='up'
+  lower-threshold='10'
  >
- <!-- <view  class="load" >加载中···</view>  -->
- <view  class="load" >
-  <image 
-  style="width: 150rpx; height: 150rpx"
- src="../../images/index/loading.jpg" ></image> 
- </view>
- <view class="index-content" style="min-height:{{windowHeight+5}}px" >
+ <view style="min-height:{{windowHeight+20}}px" >
+  <view class="index-content" >
       <view class='category-wrapper'>
-      <view class='category-cell cell-l'>
-        <text class='category-zh-title category-title'>电子期刊</text>
-        <text class='category-en-title category-title'>Electronic Journals</text>
-      </view>
-      <view class='category-cell cell-r'>
-        <text class='category-zh-title category-title'>宣传册</text>
-        <text class='category-en-title category-title'>Brochure</text>
-      </view>
+        <view class='category-cell cell-l'>
+          <text class='category-zh-title category-title'>电子期刊</text>
+          <text class='category-en-title category-title'>Electronic Journals</text>
+        </view>
+        <view class='category-cell cell-r'>
+          <text class='category-zh-title category-title'>宣传册</text>
+          <text class='category-en-title category-title'>Brochure</text>
+        </view>
     </view>
     <view class='index-list-wrapper'>
       <view class='index-separation'>
-        <text class='list-title' id="ceshi">期刊</text>
+        <text class='list-title'>期刊</text>
       </view>
     </view>
     <view class="book-list-wrapper" >
@@ -38,7 +32,5 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{uploadtype}}"  class="up-loading" > {{loadText}} </view>
-  </scroll-view>
-  
- 
+  </view>
+</scroll-view> 

@@ -1,24 +1,18 @@
+<!-- <import src='../common/bookcell/bookcell.wxml'/> -->
 <import src="../../wxParse/wxParse.wxml" />
 
 <scroll-view
   style="height:{{windowHeight}}px"
-  scroll-y="true"
-  scroll-with-animation="{{transition}}"
-  scroll-top="{{scrollTop}}"
-  bindscroll="bindScroll"
-  upper-threshold="5"
-  bindscrolltolower="up"
-  lower-threshold='5'
-  bindscrolltoupper='down'
+  scroll-y
+  bindscrolltolower='up'
+  lower-threshold='10'
+  upper-threshold="-20"
+  bindscrolltoupper="down"
 >
-  <view  class="load" >
-    <image 
-    style="width: 150rpx; height: 150rpx"
-  src="../../images/index/loading.jpg" ></image> 
-  </view>
-  <view class="banner">
-      <image class='img' src="http://img1.imgtn.bdimg.com/it/u=1699897861,1689615685&fm=214&gp=0.jpg" ></image>
-      <text class="text" >HPEU·让进取的人更具职业价值</text>
+<view class="banner" >
+    <!-- <image class='img' mode="aspectFit" src="../../images/index/banner-2.jpg" ></image> -->
+    <image class='img' src="http://img1.imgtn.bdimg.com/it/u=1699897861,1689615685&fm=214&gp=0.jpg" ></image>
+    <text class="text" >HPEU·让进取的人更具职业价值</text>
   </view>
   <view class="title"> {{magazines[0].m_name}}</view>
   <view class="tab-warp" style="width: {{screenWidth}}px" style="min-height: {{windowHeight-170}}px" >

@@ -1,8 +1,8 @@
 // pages/booklist/booklist.js
-var SCROLL_TOP 
+
 var  root = require('../../utils.js')
 var WxParse = require('../../wxParse/wxParse.js');
-var ID 
+var ID
 
 Page({
 
@@ -13,139 +13,100 @@ Page({
     books: '',
     magazines: '',
     screenWidth: 0,
+    windowHeight: 0,
     cur: 'a',
     info: '',
-    windowHeight: 0,
-    scrollTop: '',
-    transition: false,
     page: 1,
-    num: 9,
-    loadText: '加载中···',
-    down_ing: false
+    num: 9
   },
-  bindScroll: function (e) {
-    var _this = this
-    if (e.detail.scrollTop < SCROLL_TOP && e.detail.scrollTop > 10) {
-      if (this.scrolltime) clearTimeout(this.scrolltime)
-      this.scrolltime = setTimeout(function () {
-        _this.setData({
-          scrollTop: SCROLL_TOP
-        })
-      }, 150)
-    } 
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  down: function () {
+  up: function () {
     var _this = this
-    if (this.downtime) { clearTimeout(this.downtime) }
-    this.downtime = setTimeout( function () {
-      // 将page设为初始状态1
-      _this.setData( {
-        page: 1
-      } )
+    if (this.data.cur == 'a' || this.data.books.length < this.data.num ) {
+      return false
+    }
+    if ( this.uptime ) { clearTimeout(this.uptime) }
+    this.uptime = setTimeout( function () {
       wx.request({
         url: root.getDocList,
         method: 'GET',
         data: {
           id: ID,
-          page: 1,
-          num: _this.data.num,
+          page: _this.data.page + 1,
+          num: _this.data.num
         },
         success: function (res) {
-          if ( res.data ) {
+          if (res.data) {
+            var list = _this.data.books.concat(res.data)
             _this.setData( {
-              books: res.data
-            } )
-          } else {
-            _this.setData( {
-              books: []
+              books: list,
+              page: _this.data.page + 1
             } )
           }
         }
       })
     }, 300 )
   },
-  up: function () {
-     var _this = this
-     if ( this.data.cur == 'a' || this.data.books.length < this.data.num  ) {
-       return false
-     }
-     if (this.uptime) { clearTimeout(this.uptime) }
-     this.uptime = setTimeout( function () {
-      //  console.log(1)
-      // 设置上拉加载loading状态
-      // _this.setData( {
-      //   uploadtype: true,
-      //   loadText: '加载中···'
-      // } )
-       if ( _this.data.cur == 'b' ) {
-         wx.request({
-           url: root.getDocList,
-           method: 'GET',
-           data: {
-             id: ID,
-             page: _this.data.page + 1,
-             num: _this.data.num
-           },
-           success: function (res) {
-             if (res.data) {
-               var list = _this.data.books.concat(res.data)
-               _this.setData({
-                 books: list,
-                 page: _this.data.page + 1,
-                 uploadtype: false
-               })
-             } else {
-               _this.setData( {
-                 uploadtype: true,
-                 loadText: '没有内容了'
-               } )
-             }
-           }
-         })
-       }
-     }, 300 )
+  down: function () {
+    var _this = this
+    if (this.downtime) { clearTimeout(this.downtime) }
+    this.downtime = setTimeout( function () {
+      //  刷新页面了 初始化 page值为1
+      _this.setData( {
+        page: 1
+      } )
+      // 设置loading状态
+      wx.showNavigationBarLoading()
+      // 发送ajax请求
+      wx.request({
+        url: root.getDocList,
+        method: 'GET',
+        data: {
+          id: ID,
+          page: _this.data.page,
+          num: _this.data.num
+        },
+        success: function (res) {
+          console.log(res.data)
+          // 取消loading状态
+          wx.hideNavigationBarLoading()
+          _this.setData({
+            books: res.data
+          })
+        }
+      })
+
+    }, 300 )
   },
   onLoad: function (options) {
     var _this = this
-    // 获取屏幕宽度
     ID = options.num
+    // 获取屏幕宽度
     wx.getSystemInfo({
       success: function(res) {
-        if (res.windowHeight > 603) {
-          SCROLL_TOP = 83
-        } else {
-          SCROLL_TOP = 75
-        }
         _this.setData( {
           screenWidth: res.windowWidth,
           windowHeight: res.windowHeight
         } )
       },
     })
+    // 文章列表
     wx.request({
       url: root.getDocList,
       method: 'GET',
       data: {
         id: options.num,
         page: _this.data.page,
-        num: _this.data.num
+        num: this.data.num
       },
       success: function (res) {
         console.log(res.data)
-        if ( !res.data) {
-          _this.setData( {
-            loadText: '没有内容了',
-            books: []
-          } )
-        } else {
-          _this.setData({
-            books: res.data
-          })
-        }
-          
+        _this.setData( {
+          books: res.data
+        } )
       }
     })
     // 获取杂志名称
@@ -158,9 +119,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         _this.setData( {
-          magazines: res.data,
-          scrollTop: SCROLL_TOP,
-          transition: true
+          magazines: res.data
         } )
         WxParse.wxParse('article', 'html', _this.data.magazines[0].m_info, _this, 0);
       }
@@ -219,5 +178,10 @@ Page({
    */
   onReachBottom: function () {
   
+  },
+  taphandle: function () {
+    wx.navigateTo({
+      url: '../bookdetail/bookdetail',
+    })
   }
 })

@@ -2,8 +2,8 @@
 // 引入富文本解析文件
 
 var  root = require('../../utils.js')
-var SCROLL_TOP = 0
-// var WxParse = require('../../wxParse/wxParse.js');
+
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -11,15 +11,12 @@ Page({
    */
   data: {
     animationData: {},
-    data: {},
+    data: [],
     currentPosition: {},
     article: '',
-    windowHeight: '',
-    scrollTop: '',
-    uploadtype: false,
     page: 1,
     num: 9,
-    loadText: '加载中···'
+    windowHeight: 0
   },
 
   /**
@@ -32,76 +29,52 @@ Page({
       url: '../booklist/booklist?num=' + ev.currentTarget.id,
     })
   },
-  bindScroll: function (e) {
-    var _this = this
-    if (e.detail.scrollTop < SCROLL_TOP && e.detail.scrollTop>10  ) {
-      // setTimeout( function () {
-        // _this.setData( {
-        //   scrollTop: SCROLL_TOP
-        // } )
-      // },300 )
-      if (this.scrolltime) clearTimeout(this.scrolltime)
-      this.scrolltime = setTimeout( function () {
-        _this.setData({
-          scrollTop: SCROLL_TOP
-        })
-      }, 150 )
-    } 
-  },
   /**
    * 生命周期函数--监听页面加载
    */
-  // 下拉刷新触发函数
   down: function () {
     var _this = this
-    if ( this.ajax ) { clearTimeout( this.ajax ) }
-    this.ajax = setTimeout( function () {
-      // console.log('ajax')
-      // 刷新，重新设置page为0
+    if ( this.downtime ) { clearTimeout(this.downtime) }
+    this.downtime = setTimeout( function () {
+      wx.showNavigationBarLoading()
+      // 将页面page数初始化为1
       _this.setData( {
         page: 1
       } )
+      // 发送ajax请求
       wx.request({
         url: root.getMagazine,
         method: 'GET',
         data: {
           page: 1,
-          num: 9
+          num: _this.data.num
         },
         success: function (res) {
-          _this.setData({
+          wx.hideNavigationBarLoading()
+          _this.setData( {
             data: res.data
-          })
+          } )
         }
       })
     }, 300 )
   },
   up: function () {
     var _this = this
-    if ( this.timeup ) { clearTimeout(this.timeup) }
-    this.timeup = setTimeout( function () {
-      // console.log(1)
-      _this.setData({
-        uploadtype: true,
-        loadText: '加载中···',
-      })
+    if ( this.uptime ) { clearTimeout(this.uptime) }
+    this.uptime = setTimeout( function () {
       wx.request({
         url: root.getMagazine,
-        type: 'GET',
+        method: 'GET',
         data: {
           page: _this.data.page + 1,
           num: _this.data.num
         },
         success: function (res) {
-          if (res.data) {
+          if( res.data ) {
             var list = _this.data.data.concat(res.data)
             _this.setData( {
               data: list,
               page: _this.data.page + 1
-            } )
-          } else {
-            _this.setData( {
-              loadText: '实在是拉不出来了'
             } )
           }
         }
@@ -110,34 +83,23 @@ Page({
   },
   onLoad: function (options) {
     var _this = this
-    // 获取屏幕高度并设置 data windowHeight
     wx.getSystemInfo({
-      success: function (res) {
-        // console.log(res.windowHeight)
-        if ( res.windowHeight > 603 ) {
-          SCROLL_TOP = 83
-        } else {
-          SCROLL_TOP = 75
-        }
+      success: function(res) {
         _this.setData( {
           windowHeight: res.windowHeight
-          // scrollTop: SCROLL_TOP
         } )
       },
     })
-    // 获取杂志信息
     wx.request({
       url: root.getMagazine,
       method: 'GET',
       data: {
-        num: this.data.num,
-        page: this.data.page
+        page: this.data.page,
+        num: this.data.num
       },
       success: function (res) {
         _this.setData({
-          data: res.data,
-          scrollTop: SCROLL_TOP
-          // page: _this.data.page + 1
+          data: res.data
         })
       }
     })

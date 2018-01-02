@@ -1,4 +1,6 @@
-var path = 'http://127.0.0.1:3000'
+// var path = 'http://127.0.0.1:3000'
+
+var path = 'https://wxhpeu.walkerup.com'
 
 // var root = path + '/magazines/get1'
 
